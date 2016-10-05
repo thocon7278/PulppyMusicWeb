@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <html lang="en">
-
+<!-- Home Edit -->
 <head>
 
 <meta charset="utf-8">
