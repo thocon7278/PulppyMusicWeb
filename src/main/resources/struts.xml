@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.extension" value="," />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.mapper.action.prefix.enabled" value="true" />
+
+	<package name="user" namespace="/User" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="scope">
+					<param name="key">accdto</param>
+					<param name="session">accdto</param>
+					<param name="autoCreateSession">true</param>
+				</interceptor-ref>
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+
+		<!-- Init Action -->
+		<action name="Login">
+			<result>pages/Login.jsp</result>
+		</action>
+
+		<!-- Index Page Direct -->
+		<action name="Index" class="com.pulppy.user.action.LoadingIndexPage"
+			method="Init">
+			<result name="SUCCESS">pages/Index.jsp</result>
+			<result name="FAIL" type="redirectAction">
+				<param name="actionName">Error</param>
+			</result>
+		</action>
+
+		<!-- Error Page Direct -->
+		<action name="Error">
+			<result>pages/ErrorPage.jsp</result>
+		</action>
+
+		<!-- Checking Login Action -->
+		<action name="Welcome" class="com.pulppy.user.action.CheckLoign"
+			method="checkLogin">
+			<!-- Call another action direct with param actionName -->
+			<result name="SUCCESS" type="redirectAction">
+				<param name="actionName">Index</param>
+			</result>
+			<result name="FAIL" type="redirectAction">
+				<param name="actionName">Error</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>
