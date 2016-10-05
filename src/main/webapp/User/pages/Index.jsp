@@ -39,7 +39,7 @@
 </head>
 
 <body>
-	<!-- Start Body Index -->
+	<!-- Start Body Index !-->
 	<div id="wrapper">
 		<jsp:include page="Template/NavigationHeadTemp.jsp" />
 
