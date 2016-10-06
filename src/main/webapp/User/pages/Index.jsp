@@ -2,9 +2,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <html lang="en">
-<!-- Home Edit -->
-<head>
 
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +21,7 @@
 <!-- Custom CSS -->
 <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
-<!-- Morris Charts CSS -->
+<!-- Morris Charts  -->
 <link href="vendor/morrisjs/morris.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
@@ -39,7 +38,7 @@
 </head>
 
 <body>
-	<!-- Start Body Index !-->
+	<!-- Start Body Index -->
 	<div id="wrapper">
 		<jsp:include page="Template/NavigationHeadTemp.jsp" />
 
@@ -49,11 +48,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">Blank</h1>
-						
-						<audio controls>
-							<source src="https://googledrive.com/host/0B3ekfv5mkbffZnBCaklnRnJtUnM" type="audio/mpeg">
+
+						<audio controls id="idplay">
+							<source
+								src="https://googledrive.com/host/0B3ekfv5mkbffZnBCaklnRnJtUnM"
+								type="audio/mpeg">
 						</audio>
-						
+
 						<h2>
 							<%-- <s:property value="accdto.username__p" />
 							<s:iterator value="musicDTOList" var="i">
@@ -158,39 +159,39 @@
 							<div class="panel-heading">
 								<i class="fa fa-bell fa-fw"></i>New Song
 							</div>
-							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="list-group">
 									<s:iterator value="musicDTOList" var="i">
-										<a href="#" class="list-group-item" onclick="playsong()">
-											<i class="fa fa-comment fa-fw" style="font-size: smaller;"></i>
-										<s:property value="songname__p" /> <%-- <span class="pull-right text-muted small" style="font-size: smaller;"><em>Song Artist ago</em> </span> --%>
+										<a href="#" class="list-group-item"
+											onclick="playsong();return false;"> <i
+											class="fa fa-comment fa-fw" style="font-size: smaller;"></i>
+											<s:property value="songname__p" /> <%-- <span class="pull-right text-muted small" style="font-size: smaller;"><em>Song Artist ago</em> </span> --%>
 											<span id="songLink" style="visibility: hidden;"><s:property
 													value="songLink__p" /></span>
 										</a>
 									</s:iterator>
 								</div>
-								<!-- /.list-group -->
 							</div>
 						</div>
 					</div>
 					<!-- Pulppy End Content Page -->
 				</div>
-				<!-- /.row -->
-				<!-- /.col-lg-12 -->
-
-				<!-- /.row -->
 			</div>
-			<!-- /.container-fluid -->
 		</div>
-		<!-- /#page-wrapper -->
 	</div>
 
 	<script type="text/javascript">
+		/* Script input Audio Source Start */
 		function playsong() {
 			alert($("#songLink").text());
-
+			$('a #songLink').click(function() {
+				var a = $(this).text();
+				var songlink = 'https://googledrive.com/host/' + a;
+				$('audio').show();
+				$('#idplay').attr('src', songlink);
+			});
 		}
+		/* Script input Audio Source End */
 	</script>
 	<!-- jQuery -->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -208,8 +209,6 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="dist/js/sb-admin-2.js"></script>
-	
-	<!-- End Body Content -->
 </body>
 
 </html>
